@@ -2,6 +2,7 @@
 
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+import { CHART_CONFIG, METRIC_COLORS } from "@/lib/colors"
 
 const data = [
   {
@@ -57,27 +58,7 @@ const data = [
 
 export function Overview() {
   return (
-    <ChartContainer
-      config={{
-        "Éxito de Compilación": {
-          label: "Éxito de Compilación",
-          color: "#4ade80", // verde
-        },
-        "Calidad de Código": {
-          label: "Calidad de Código",
-          color: "#60a5fa", // azul
-        },
-        "Finalización de Sprint": {
-          label: "Finalización de Sprint",
-          color: "#a78bfa", // violeta
-        },
-        "Resolución de Tickets": {
-          label: "Resolución de Tickets",
-          color: "#fb923c", // naranja
-        },
-      }}
-      className="h-[300px]"
-    >
+    <ChartContainer config={CHART_CONFIG} className="h-[300px]">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -85,10 +66,10 @@ export function Overview() {
           <YAxis />
           <ChartTooltip content={<ChartTooltipContent />} />
           <Legend />
-          <Bar dataKey="Éxito de Compilación" fill="#4ade80" />
-          <Bar dataKey="Calidad de Código" fill="#60a5fa" />
-          <Bar dataKey="Finalización de Sprint" fill="#a78bfa" />
-          <Bar dataKey="Resolución de Tickets" fill="#fb923c" />
+          <Bar dataKey="Éxito de Compilación" fill={METRIC_COLORS.buildSuccess.primary} />
+          <Bar dataKey="Calidad de Código" fill={METRIC_COLORS.codeQuality.primary} />
+          <Bar dataKey="Finalización de Sprint" fill={METRIC_COLORS.sprintCompletion.primary} />
+          <Bar dataKey="Resolución de Tickets" fill={METRIC_COLORS.ticketResolution.primary} />
         </BarChart>
       </ResponsiveContainer>
     </ChartContainer>

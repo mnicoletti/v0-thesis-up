@@ -1,6 +1,7 @@
 "use client"
 
 import { CheckCircle2, Code2, GitPullRequest, TicketCheck } from "lucide-react"
+import { METRIC_COLORS } from "@/lib/colors"
 
 const pointsHistoryData = [
   {
@@ -8,35 +9,35 @@ const pointsHistoryData = [
     points: 25,
     date: "Hoy, 10:30 AM",
     icon: CheckCircle2,
-    iconColor: "text-green-500",
+    iconColor: METRIC_COLORS.buildSuccess.text,
   },
   {
     action: "Revisión de código con calidad A+",
     points: 50,
     date: "Ayer, 3:15 PM",
     icon: Code2,
-    iconColor: "text-blue-500",
+    iconColor: METRIC_COLORS.codeQuality.text,
   },
   {
     action: "Tareas de sprint completadas temprano",
     points: 75,
     date: "20 Jul, 2023",
     icon: GitPullRequest,
-    iconColor: "text-violet-500",
+    iconColor: METRIC_COLORS.sprintCompletion.text,
   },
   {
     action: "Resolvió 5 tickets de alta prioridad",
     points: 100,
     date: "18 Jul, 2023",
     icon: TicketCheck,
-    iconColor: "text-orange-500",
+    iconColor: METRIC_COLORS.ticketResolution.text,
   },
   {
     action: "Ayudó a compañero de equipo con depuración",
     points: 30,
     date: "15 Jul, 2023",
     icon: Code2,
-    iconColor: "text-blue-500",
+    iconColor: METRIC_COLORS.codeQuality.text,
   },
 ]
 

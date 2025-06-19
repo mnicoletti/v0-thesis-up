@@ -2,6 +2,7 @@
 
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+import { CHART_CONFIG, METRIC_COLORS } from "@/lib/colors"
 
 const data = [
   {
@@ -36,27 +37,7 @@ const data = [
 
 export function TeamPerformanceChart() {
   return (
-    <ChartContainer
-      config={{
-        "Éxito de Compilación": {
-          label: "Éxito de Compilación",
-          color: "hsl(var(--chart-1))",
-        },
-        "Calidad de Código": {
-          label: "Calidad de Código",
-          color: "hsl(var(--chart-2))",
-        },
-        "Finalización de Sprint": {
-          label: "Finalización de Sprint",
-          color: "hsl(var(--chart-3))",
-        },
-        "Resolución de Tickets": {
-          label: "Resolución de Tickets",
-          color: "hsl(var(--chart-4))",
-        },
-      }}
-      className="h-[300px]"
-    >
+    <ChartContainer config={CHART_CONFIG} className="h-[300px]">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -64,10 +45,10 @@ export function TeamPerformanceChart() {
           <YAxis />
           <ChartTooltip content={<ChartTooltipContent />} />
           <Legend />
-          <Bar dataKey="Éxito de Compilación" fill="var(--color-Éxito-de-Compilación)" />
-          <Bar dataKey="Calidad de Código" fill="var(--color-Calidad-de-Código)" />
-          <Bar dataKey="Finalización de Sprint" fill="var(--color-Finalización-de-Sprint)" />
-          <Bar dataKey="Resolución de Tickets" fill="var(--color-Resolución-de-Tickets)" />
+          <Bar dataKey="Éxito de Compilación" fill={METRIC_COLORS.buildSuccess.primary} />
+          <Bar dataKey="Calidad de Código" fill={METRIC_COLORS.codeQuality.primary} />
+          <Bar dataKey="Finalización de Sprint" fill={METRIC_COLORS.sprintCompletion.primary} />
+          <Bar dataKey="Resolución de Tickets" fill={METRIC_COLORS.ticketResolution.primary} />
         </BarChart>
       </ResponsiveContainer>
     </ChartContainer>

@@ -1,6 +1,7 @@
 "use client"
 
 import { Progress } from "@/components/ui/progress"
+import { METRIC_COLORS } from "@/lib/colors"
 
 const goalsData = [
   {
@@ -50,12 +51,12 @@ export function TeamGoals() {
               <p
                 className={`text-xs ${
                   goal.status === "En Camino"
-                    ? "text-green-500"
+                    ? METRIC_COLORS.buildSuccess.text
                     : goal.status === "Necesita Atención"
-                      ? "text-amber-500"
+                      ? METRIC_COLORS.ticketResolution.text
                       : goal.status === "En Riesgo"
                         ? "text-red-500"
-                        : "text-blue-500"
+                        : METRIC_COLORS.codeQuality.text
                 }`}
               >
                 {goal.status}
@@ -66,12 +67,12 @@ export function TeamGoals() {
             value={goal.progress}
             className={`h-2 ${
               goal.status === "En Camino"
-                ? "bg-green-100"
+                ? METRIC_COLORS.buildSuccess.light
                 : goal.status === "Necesita Atención"
-                  ? "bg-amber-100"
+                  ? METRIC_COLORS.ticketResolution.light
                   : goal.status === "En Riesgo"
                     ? "bg-red-100"
-                    : "bg-blue-100"
+                    : METRIC_COLORS.codeQuality.light
             }`}
           />
         </div>

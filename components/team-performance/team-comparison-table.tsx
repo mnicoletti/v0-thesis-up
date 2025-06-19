@@ -2,6 +2,7 @@
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
+import { METRIC_COLORS } from "@/lib/colors"
 
 const teamData = [
   {
@@ -72,7 +73,12 @@ export function TeamComparisonTable() {
             <TableCell>{team.ticketResolution}</TableCell>
             <TableCell>{team.points}</TableCell>
             <TableCell>
-              <Badge variant={team.trend === "up" ? "success" : "destructive"}>{team.trend === "up" ? "↑" : "↓"}</Badge>
+              <Badge
+                variant={team.trend === "up" ? "default" : "destructive"}
+                className={team.trend === "up" ? METRIC_COLORS.buildSuccess.text : "text-red-500"}
+              >
+                {team.trend === "up" ? "↑" : "↓"}
+              </Badge>
             </TableCell>
           </TableRow>
         ))}

@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { BarChart3, Settings, Users, User, Award, GitBranch, Cog, Home, LogOut, Shield, UserCog } from "lucide-react"
+import { BarChart3, Users, User, Award, GitBranch, Cog, Home, LogOut, Shield, UserCog } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -29,30 +29,6 @@ const routes = [
     href: "/my-performance",
     color: "text-pink-700",
   },
-  {
-    label: "Motor de Reglas",
-    icon: Cog,
-    href: "/rules-engine",
-    color: "text-orange-500",
-  },
-  {
-    label: "Gamificación",
-    icon: Award,
-    href: "/gamification",
-    color: "text-emerald-500",
-  },
-  {
-    label: "Integraciones",
-    icon: GitBranch,
-    href: "/integrations",
-    color: "text-blue-500",
-  },
-  {
-    label: "Configuración",
-    icon: Settings,
-    href: "/settings",
-    color: "text-gray-500",
-  },
 ]
 
 const adminRoutes = [
@@ -73,6 +49,24 @@ const adminRoutes = [
     icon: Shield,
     href: "/admin/roles",
     color: "text-indigo-500",
+  },
+  {
+    label: "Motor de Reglas",
+    icon: Cog,
+    href: "/rules-engine",
+    color: "text-orange-500",
+  },
+  {
+    label: "Gamificación",
+    icon: Award,
+    href: "/gamification",
+    color: "text-emerald-500",
+  },
+  {
+    label: "Integraciones",
+    icon: GitBranch,
+    href: "/integrations",
+    color: "text-blue-500",
   },
 ]
 
@@ -198,9 +192,12 @@ export function Sidebar() {
             <AvatarImage src="/placeholder.svg?height=32&width=32" />
             <AvatarFallback>{getInitials(userName)}</AvatarFallback>
           </Avatar>
-          <div className="flex flex-col">
+          <div className="flex flex-col flex-1">
             <span className="text-sm font-medium">{userName}</span>
             <span className="text-xs text-zinc-400">{getRoleInSpanish(userRole)}</span>
+            <Link href="/settings" className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors">
+              Configuración
+            </Link>
           </div>
           <Button variant="ghost" size="icon" className="ml-auto text-zinc-400" onClick={handleLogout}>
             <LogOut className="h-5 w-5" />

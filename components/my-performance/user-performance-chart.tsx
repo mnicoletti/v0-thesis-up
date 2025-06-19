@@ -2,6 +2,7 @@
 
 import { Line, LineChart, CartesianGrid, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+import { CHART_CONFIG, METRIC_COLORS } from "@/lib/colors"
 
 const data = [
   {
@@ -36,27 +37,7 @@ const data = [
 
 export function UserPerformanceChart() {
   return (
-    <ChartContainer
-      config={{
-        "Éxito de Compilación": {
-          label: "Éxito de Compilación",
-          color: "hsl(var(--chart-1))",
-        },
-        "Calidad de Código": {
-          label: "Calidad de Código",
-          color: "hsl(var(--chart-2))",
-        },
-        "Finalización de Sprint": {
-          label: "Finalización de Sprint",
-          color: "hsl(var(--chart-3))",
-        },
-        "Resolución de Tickets": {
-          label: "Resolución de Tickets",
-          color: "hsl(var(--chart-4))",
-        },
-      }}
-      className="h-[300px]"
-    >
+    <ChartContainer config={CHART_CONFIG} className="h-[300px]">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -64,10 +45,10 @@ export function UserPerformanceChart() {
           <YAxis />
           <ChartTooltip content={<ChartTooltipContent />} />
           <Legend />
-          <Line type="monotone" dataKey="Éxito de Compilación" stroke="var(--color-Éxito-de-Compilación)" />
-          <Line type="monotone" dataKey="Calidad de Código" stroke="var(--color-Calidad-de-Código)" />
-          <Line type="monotone" dataKey="Finalización de Sprint" stroke="var(--color-Finalización-de-Sprint)" />
-          <Line type="monotone" dataKey="Resolución de Tickets" stroke="var(--color-Resolución-de-Tickets)" />
+          <Line type="monotone" dataKey="Éxito de Compilación" stroke={METRIC_COLORS.buildSuccess.primary} />
+          <Line type="monotone" dataKey="Calidad de Código" stroke={METRIC_COLORS.codeQuality.primary} />
+          <Line type="monotone" dataKey="Finalización de Sprint" stroke={METRIC_COLORS.sprintCompletion.primary} />
+          <Line type="monotone" dataKey="Resolución de Tickets" stroke={METRIC_COLORS.ticketResolution.primary} />
         </LineChart>
       </ResponsiveContainer>
     </ChartContainer>
