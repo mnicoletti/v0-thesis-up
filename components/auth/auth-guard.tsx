@@ -20,17 +20,32 @@ export function AuthGuard({ children }: AuthGuardProps) {
     // Verificar si el usuario está autenticado
     const checkAuth = () => {
       const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"
+      const userRole = localStorage.getItem("userRole")
+
       setIsAuthenticated(isLoggedIn)
       setIsLoading(false)
 
       // Si no está autenticado y no está en una ruta de autenticación, redirigir al login
       if (!isLoggedIn && !pathname.startsWith("/auth/")) {
         router.push("/auth/login")
+        return
       }
 
       // Si está autenticado y está en una ruta de autenticación, redirigir al dashboard
       if (isLoggedIn && pathname.startsWith("/auth/")) {
         router.push("/")
+        return
+      }
+
+      // Verificar acceso a rutas administrativas para usuarios test
+      if (isLoggedIn && userRole === "test") {
+        const restrictedRoutes = ["/rules-engine", "/gamification", "/integrations", "/admin"]
+        const isRestrictedRoute = restrictedRoutes.some((route) => pathname.startsWith(route))
+
+        if (isRestrictedRoute) {
+          router.push("/")
+          return
+        }
       }
     }
 

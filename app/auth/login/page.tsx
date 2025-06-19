@@ -87,16 +87,23 @@ export default function LoginPage() {
       // Simulación de autenticación
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
-      // Credenciales de demostración
-      if (formData.username === "admin" && formData.password === "password") {
-        // Guardar información de sesión (en una aplicación real, esto sería un token JWT)
-        localStorage.setItem("userRole", "administrator")
+      // Credenciales de demostración - ambos usuarios usan 'password'
+      if (
+        (formData.username === "admin" && formData.password === "password") ||
+        (formData.username === "test" && formData.password === "password")
+      ) {
+        // Determinar el rol basado en el usuario
+        const userRole = formData.username === "admin" ? "administrator" : "test"
+        const userName = formData.username === "admin" ? "Jane Doe" : "Test User"
+
+        // Guardar información de sesión
+        localStorage.setItem("userRole", userRole)
         localStorage.setItem("isLoggedIn", "true")
-        localStorage.setItem("userName", "Jane Doe")
+        localStorage.setItem("userName", userName)
 
         toast({
           title: "Inicio de sesión exitoso",
-          description: "Bienvenido al Panel de Gamificación DevOps",
+          description: `Bienvenido al Panel de Gamificación DevOps, ${userName}`,
         })
 
         // Redirigir al dashboard
@@ -214,7 +221,8 @@ export default function LoginPage() {
             </div>
             <div className="text-center text-xs text-muted-foreground">
               <p>Credenciales de demostración:</p>
-              <p>Usuario: admin | Contraseña: password</p>
+              <p>Admin: admin | password</p>
+              <p>Usuario: test | password</p>
             </div>
           </CardFooter>
         </Card>

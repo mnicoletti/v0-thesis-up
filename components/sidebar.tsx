@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { BarChart3, Users, User, Award, GitBranch, Cog, Home, LogOut, Shield, UserCog } from "lucide-react"
+import { BarChart3, Settings, Users, User, Award, GitBranch, Cog, Home, LogOut, Shield, UserCog } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/hooks/use-toast"
 import { useEffect, useState } from "react"
 
+// Main routes - simplified for all users
 const routes = [
   {
     label: "Panel Principal",
@@ -31,6 +32,7 @@ const routes = [
   },
 ]
 
+// Admin routes - including the moved sections
 const adminRoutes = [
   {
     label: "Gestión de Usuarios",
@@ -128,6 +130,8 @@ export function Sidebar() {
         return "Superusuario"
       case "manager":
         return "Gerente"
+      case "test":
+        return "Usuario de Prueba"
       default:
         return "Usuario"
     }
@@ -195,7 +199,14 @@ export function Sidebar() {
           <div className="flex flex-col flex-1">
             <span className="text-sm font-medium">{userName}</span>
             <span className="text-xs text-zinc-400">{getRoleInSpanish(userRole)}</span>
-            <Link href="/settings" className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors">
+            <Link
+              href="/settings"
+              className={cn(
+                "text-xs hover:text-indigo-300 transition-colors flex items-center gap-1 mt-1",
+                pathname === "/settings" ? "text-indigo-400" : "text-indigo-400",
+              )}
+            >
+              <Settings className="h-3 w-3" />
               Configuración
             </Link>
           </div>

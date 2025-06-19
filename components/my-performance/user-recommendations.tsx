@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button"
 import { BookOpen, Code2, GitPullRequest, TicketCheck } from "lucide-react"
-import { METRIC_COLORS } from "@/lib/colors"
 
 const recommendationsData = [
   {
@@ -10,28 +9,28 @@ const recommendationsData = [
     description: "Tu calidad de código es excelente, pero la cobertura de pruebas podría mejorarse.",
     action: "Ver Guía de Pruebas",
     icon: Code2,
-    iconColor: METRIC_COLORS.codeQuality.text,
+    iconColor: "text-blue-500",
   },
   {
     title: "Planificación de Sprint",
     description: "Considera dividir tareas más grandes para una mejor estimación.",
     action: "Leer Mejores Prácticas",
     icon: GitPullRequest,
-    iconColor: METRIC_COLORS.sprintCompletion.text,
+    iconColor: "text-violet-500",
   },
   {
     title: "Documentación de Tickets",
     description: "Añade más detalles a tus resoluciones de tickets para mejor compartir conocimiento.",
     action: "Ver Ejemplos",
     icon: TicketCheck,
-    iconColor: METRIC_COLORS.ticketResolution.text,
+    iconColor: "text-orange-500",
   },
   {
     title: "Aprender Pipelines CI/CD",
     description: "Mejora tus habilidades DevOps aprendiendo más sobre pipelines CI/CD.",
     action: "Comenzar Aprendizaje",
     icon: BookOpen,
-    iconColor: METRIC_COLORS.buildSuccess.text,
+    iconColor: "text-green-500",
   },
 ]
 

@@ -1,8 +1,6 @@
 "use client"
 
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
-import { CHART_CONFIG, METRIC_COLORS } from "@/lib/colors"
+import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts"
 
 const data = [
   {
@@ -35,22 +33,82 @@ const data = [
   },
 ]
 
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
+        <p className="font-medium text-gray-900">{`${label}`}</p>
+        {payload.map((entry: any, index: number) => (
+          <p key={index} className="text-sm" style={{ color: entry.color }}>
+            {`${entry.dataKey}: ${entry.value}%`}
+          </p>
+        ))}
+      </div>
+    )
+  }
+  return null
+}
+
 export function TeamPerformanceChart() {
   return (
-    <ChartContainer config={CHART_CONFIG} className="h-[300px]">
+    <div className="w-full h-[300px] sm:h-[350px] md:h-[400px]">
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <ChartTooltip content={<ChartTooltipContent />} />
-          <Legend />
-          <Bar dataKey="Éxito de Compilación" fill={METRIC_COLORS.buildSuccess.primary} />
-          <Bar dataKey="Calidad de Código" fill={METRIC_COLORS.codeQuality.primary} />
-          <Bar dataKey="Finalización de Sprint" fill={METRIC_COLORS.sprintCompletion.primary} />
-          <Bar dataKey="Resolución de Tickets" fill={METRIC_COLORS.ticketResolution.primary} />
+        <BarChart
+          data={data}
+          margin={{
+            top: 20,
+            right: 30,
+            left: 20,
+            bottom: 80,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" stroke="#e0e7ff" opacity={0.5} />
+          <XAxis
+            dataKey="name"
+            tick={{ fontSize: 11, fill: "#6b7280" }}
+            angle={-45}
+            textAnchor="end"
+            height={80}
+            axisLine={{ stroke: "#d1d5db" }}
+            tickLine={{ stroke: "#d1d5db" }}
+          />
+          <YAxis
+            tick={{ fontSize: 12, fill: "#6b7280" }}
+            axisLine={{ stroke: "#d1d5db" }}
+            tickLine={{ stroke: "#d1d5db" }}
+          />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend wrapperStyle={{ paddingTop: "20px", fontSize: "11px" }} iconType="rect" />
+          <Bar
+            dataKey="Éxito de Compilación"
+            fill="#4ade80"
+            radius={[3, 3, 0, 0]}
+            animationDuration={1000}
+            animationBegin={0}
+          />
+          <Bar
+            dataKey="Calidad de Código"
+            fill="#60a5fa"
+            radius={[3, 3, 0, 0]}
+            animationDuration={1000}
+            animationBegin={250}
+          />
+          <Bar
+            dataKey="Finalización de Sprint"
+            fill="#a78bfa"
+            radius={[3, 3, 0, 0]}
+            animationDuration={1000}
+            animationBegin={500}
+          />
+          <Bar
+            dataKey="Resolución de Tickets"
+            fill="#fb923c"
+            radius={[3, 3, 0, 0]}
+            animationDuration={1000}
+            animationBegin={750}
+          />
         </BarChart>
       </ResponsiveContainer>
-    </ChartContainer>
+    </div>
   )
 }

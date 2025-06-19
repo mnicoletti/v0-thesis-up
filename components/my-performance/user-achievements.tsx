@@ -2,43 +2,41 @@
 
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle2, Code2, GitPullRequest, Star, TicketCheck } from "lucide-react"
-import { METRIC_COLORS } from "@/lib/colors"
 
-// Actualizar los colores de los iconos en achievementsData:
 const achievementsData = [
   {
     name: "Campeón de Calidad de Código",
     description: "Mantuvo calidad de código A+ durante 3 meses consecutivos",
     icon: Code2,
-    iconColor: METRIC_COLORS.codeQuality.text,
+    iconColor: "text-blue-500",
     date: "15 de julio, 2023",
   },
   {
     name: "Maestro de Compilación",
     description: "Logró 100 compilaciones exitosas",
     icon: CheckCircle2,
-    iconColor: METRIC_COLORS.buildSuccess.text,
+    iconColor: "text-green-500",
     date: "22 de junio, 2023",
   },
   {
     name: "Superestrella de Sprint",
     description: "Completó todas las tareas de sprint durante 5 sprints consecutivos",
     icon: GitPullRequest,
-    iconColor: METRIC_COLORS.sprintCompletion.text,
+    iconColor: "text-violet-500",
     date: "30 de mayo, 2023",
   },
   {
     name: "Resolutor de Tickets",
     description: "Resolvió 100 tickets",
     icon: TicketCheck,
-    iconColor: METRIC_COLORS.ticketResolution.text,
+    iconColor: "text-orange-500",
     date: "12 de abril, 2023",
   },
   {
     name: "Coleccionista de Puntos",
     description: "Ganó más de 1000 puntos",
     icon: Star,
-    iconColor: METRIC_COLORS.points.text,
+    iconColor: "text-yellow-500",
     date: "5 de marzo, 2023",
   },
 ]

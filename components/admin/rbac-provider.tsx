@@ -4,7 +4,7 @@ import type React from "react"
 
 import { createContext, useContext, type ReactNode, useState, useEffect } from "react"
 
-type Role = "administrator" | "superuser" | "manager" | "basic"
+type Role = "administrator" | "superuser" | "manager" | "basic" | "test"
 
 type Permission = "view" | "create" | "edit" | "delete"
 
@@ -59,6 +59,16 @@ const rolePermissions: Record<Role, Record<Module, Permission[]>> = {
     gamification: ["view"],
     integrations: [],
     settings: ["view"],
+  },
+  test: {
+    dashboard: ["view"],
+    users: [],
+    teams: [],
+    roles: [],
+    rules: [],
+    gamification: [],
+    integrations: [],
+    settings: [],
   },
 }
 

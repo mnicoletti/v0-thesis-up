@@ -1,8 +1,6 @@
 "use client"
 
-import { Line, LineChart, CartesianGrid, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
-import { CHART_CONFIG, METRIC_COLORS } from "@/lib/colors"
+import { Line, LineChart, CartesianGrid, Legend, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts"
 
 const data = [
   {
@@ -35,22 +33,91 @@ const data = [
   },
 ]
 
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
+        <p className="font-medium text-gray-900">{`${label}`}</p>
+        {payload.map((entry: any, index: number) => (
+          <p key={index} className="text-sm" style={{ color: entry.color }}>
+            {`${entry.dataKey}: ${entry.value}%`}
+          </p>
+        ))}
+      </div>
+    )
+  }
+  return null
+}
+
 export function UserPerformanceChart() {
   return (
-    <ChartContainer config={CHART_CONFIG} className="h-[300px]">
+    <div className="w-full h-[300px] sm:h-[350px] md:h-[400px]">
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <ChartTooltip content={<ChartTooltipContent />} />
-          <Legend />
-          <Line type="monotone" dataKey="Éxito de Compilación" stroke={METRIC_COLORS.buildSuccess.primary} />
-          <Line type="monotone" dataKey="Calidad de Código" stroke={METRIC_COLORS.codeQuality.primary} />
-          <Line type="monotone" dataKey="Finalización de Sprint" stroke={METRIC_COLORS.sprintCompletion.primary} />
-          <Line type="monotone" dataKey="Resolución de Tickets" stroke={METRIC_COLORS.ticketResolution.primary} />
+        <LineChart
+          data={data}
+          margin={{
+            top: 20,
+            right: 30,
+            left: 20,
+            bottom: 20,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" stroke="#e0e7ff" opacity={0.5} />
+          <XAxis
+            dataKey="name"
+            tick={{ fontSize: 12, fill: "#6b7280" }}
+            axisLine={{ stroke: "#d1d5db" }}
+            tickLine={{ stroke: "#d1d5db" }}
+          />
+          <YAxis
+            tick={{ fontSize: 12, fill: "#6b7280" }}
+            axisLine={{ stroke: "#d1d5db" }}
+            tickLine={{ stroke: "#d1d5db" }}
+          />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend wrapperStyle={{ paddingTop: "20px", fontSize: "12px" }} iconType="line" />
+          <Line
+            type="monotone"
+            dataKey="Éxito de Compilación"
+            stroke="#4ade80"
+            strokeWidth={3}
+            dot={{ fill: "#4ade80", strokeWidth: 2, r: 4 }}
+            activeDot={{ r: 6, stroke: "#4ade80", strokeWidth: 2, fill: "#4ade80" }}
+            animationDuration={1200}
+            animationBegin={0}
+          />
+          <Line
+            type="monotone"
+            dataKey="Calidad de Código"
+            stroke="#60a5fa"
+            strokeWidth={3}
+            dot={{ fill: "#60a5fa", strokeWidth: 2, r: 4 }}
+            activeDot={{ r: 6, stroke: "#60a5fa", strokeWidth: 2, fill: "#60a5fa" }}
+            animationDuration={1200}
+            animationBegin={300}
+          />
+          <Line
+            type="monotone"
+            dataKey="Finalización de Sprint"
+            stroke="#a78bfa"
+            strokeWidth={3}
+            dot={{ fill: "#a78bfa", strokeWidth: 2, r: 4 }}
+            activeDot={{ r: 6, stroke: "#a78bfa", strokeWidth: 2, fill: "#a78bfa" }}
+            animationDuration={1200}
+            animationBegin={600}
+          />
+          <Line
+            type="monotone"
+            dataKey="Resolución de Tickets"
+            stroke="#fb923c"
+            strokeWidth={3}
+            dot={{ fill: "#fb923c", strokeWidth: 2, r: 4 }}
+            activeDot={{ r: 6, stroke: "#fb923c", strokeWidth: 2, fill: "#fb923c" }}
+            animationDuration={1200}
+            animationBegin={900}
+          />
         </LineChart>
       </ResponsiveContainer>
-    </ChartContainer>
+    </div>
   )
 }
