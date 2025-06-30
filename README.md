@@ -1,30 +1,72 @@
-# Thesis
+# Impulso Lúdico en el manejo de equipos DevOps
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+Maqueta generada para el Proyecto Final de Grado de Licenciatura en Tecnologías de la Información.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/mnicolettis-projects/v0-thesis)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/PAIw9B5dZVC)
+## Resumen
 
-## Overview
+Este proyecto tiene como objetivo explorar el uso de dinámicas lúdicas para mejorar la colaboración y el rendimiento de los equipos DevOps. A través de la implementación de actividades lúdicas, se busca fomentar un ambiente de trabajo más colaborativo, motivador y eficiente.
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+## Despliegue
 
-## Deployment
-
-Your project is live at:
-
+El proyecto está desplegado en Vercel y se puede acceder a través del siguiente enlace:
 **[https://vercel.com/mnicolettis-projects/v0-thesis](https://vercel.com/mnicolettis-projects/v0-thesis)**
 
-## Build your app
+### Entorno local
 
-Continue building your app on:
+Es posible ejecutar el proyecto en un entorno local siguiendo estos pasos:
 
-**[https://v0.dev/chat/projects/PAIw9B5dZVC](https://v0.dev/chat/projects/PAIw9B5dZVC)**
+1. Clonar el repositorio:
 
-## How It Works
+```bash
+git clone https://github.com/mnicoletti/v0-thesis-up.git
+```
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+2. Navegar al directorio del proyecto:
+
+```bash
+cd v0-thesis-up
+```
+
+3. Instalar las dependencias:
+
+```bash
+npm install
+```
+
+4. Iniciar el servidor de desarrollo:
+
+```bash
+npm run dev
+```
+
+5. Abrir el navegador y acceder a `http://localhost:3000` para ver la aplicación en funcionamiento.
+
+Tambien es posible ejecutar el proyecto en un entorno local utilizando Docker. Para ello, se debe seguir estos pasos:
+
+1. Clonar el repositorio:
+
+```bash
+git clone https://github.com/mnicoletti/v0-thesis-up.git
+```
+
+2. Navegar al directorio del proyecto:
+
+```bash
+cd v0-thesis-up
+```
+
+3. Construir la imagen de Docker:
+
+```bash
+docker build -t v0-thesis-up .
+```
+
+4. Ejecutar el contenedor de Docker:
+
+```bash
+docker run -p 3000:3000 v0-thesis-up
+```
+
+5. Abrir el navegador y acceder a `http://localhost:3000` para ver la aplicación en funcionamiento.
+
+
